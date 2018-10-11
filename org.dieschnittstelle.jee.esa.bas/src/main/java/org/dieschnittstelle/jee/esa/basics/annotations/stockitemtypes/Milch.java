@@ -1,5 +1,7 @@
 package org.dieschnittstelle.jee.esa.basics.annotations.stockitemtypes;
 
+import org.dieschnittstelle.jee.esa.basics.DisplayAs;
+import org.dieschnittstelle.jee.esa.basics.ShowAnnotations;
 import org.dieschnittstelle.jee.esa.basics.annotations.Initialise;
 import org.dieschnittstelle.jee.esa.basics.annotations.Brandname;
 import org.dieschnittstelle.jee.esa.basics.annotations.StockItem;
@@ -9,7 +11,10 @@ import org.dieschnittstelle.jee.esa.basics.annotations.Units;
 @StockItem
 public class Milch {
 
+
+
 	@Units
+	@DisplayAs("amount")
 	private int menge;
 
 	@Brandname

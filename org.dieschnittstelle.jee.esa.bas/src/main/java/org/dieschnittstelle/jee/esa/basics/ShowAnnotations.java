@@ -31,6 +31,8 @@ public class ShowAnnotations {
 	/*
 	 * UE BAS2
 	 * Erledigt
+	 * UE BAS3
+	 * Erledigt
 	 */
 	private static void showAttributes(Object consumable) {
 
@@ -42,7 +44,11 @@ public class ShowAnnotations {
 			field = declaredFields[i];
 			field.setAccessible(true);
 			try {
-				message += " " + field.getName() + ": " + field.get(consumable) + ",";
+				if(field.isAnnotationPresent(DisplayAs.class)){
+					message += " " + field.getAnnotation(DisplayAs.class).value() + " " + field.get(consumable) + ",";
+				}
+				else message += " " + field.getName() + ": " + field.get(consumable) + ",";
+
 			} catch (IllegalAccessException e) {
 				e.printStackTrace();
 			}

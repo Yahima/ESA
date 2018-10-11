@@ -17,3 +17,4 @@ org\dieschnittstelle\jee\esa\basics\annotations\stockitemtypes\Milch.class
 org\dieschnittstelle\jee\esa\basics\reflection\stockitemtypes\Milk.class
 org\dieschnittstelle\jee\esa\basics\annotations\StockItemProxyImpl.class
 org\dieschnittstelle\jee\esa\basics\annotations\Units.class
+org\dieschnittstelle\jee\esa\basics\DisplayAs.class
