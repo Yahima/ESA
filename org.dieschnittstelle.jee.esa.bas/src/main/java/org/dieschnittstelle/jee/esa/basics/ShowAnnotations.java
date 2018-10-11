@@ -29,7 +29,8 @@ public class ShowAnnotations {
 	}
 
 	/*
-	 * UE BAS2 
+	 * UE BAS2
+	 * Erledigt
 	 */
 	private static void showAttributes(Object consumable) {
 
