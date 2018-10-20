@@ -67,7 +67,7 @@
       <module name="org.dieschnittstelle.jee.esa.jws.client" target="1.8" />
       <module name="org.dieschnittstelle.jee.esa.ue.jws4" target="1.8" />
       <module name="ser-client" target="1.8" />
-      <module name="ser-webapp" target="1.8" />
+      <module name="ser-webapp" target="8" />
       <module name="ue-add2" target="1.8" />
       <module name="ue-add3" target="1.8" />
       <module name="ue-jsf5" target="1.8" />

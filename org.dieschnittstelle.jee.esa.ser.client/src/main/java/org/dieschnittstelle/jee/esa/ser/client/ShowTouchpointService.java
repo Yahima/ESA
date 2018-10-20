@@ -1,13 +1,17 @@
 package org.dieschnittstelle.jee.esa.ser.client;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
 import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.Logger;
@@ -184,10 +188,17 @@ public class ShowTouchpointService {
 
 		logger.debug("client running: {}",client.isRunning());
 
-		// once you have received a response this is necessary to be able to
-		// use the client for subsequent requests:
-		// EntityUtils.consume(response.getEntity());
+		boolean bool = false;
+		try {
+			HttpDelete deleteRequest = new HttpDelete("http://localhost:8888/org.dieschnittstelle.jee.esa.ser/api/async/touchpoints/delete/" + tp.getId());
+			Future<HttpResponse> future = client.execute(deleteRequest, null);
+			HttpResponse response = future.get();
+			logger.info("Status Line: " + response.getStatusLine());
 
+		} catch (Exception e) {
+			logger.error("got exception: " + e, e);
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
@@ -207,46 +218,59 @@ public class ShowTouchpointService {
 
 		logger.debug("client running: {}",client.isRunning());
 
+		AbstractTouchpoint atp = null;
 		try {
 
 			// create post request for the api/touchpoints uri
+			HttpPost request = new HttpPost("http://localhost:8888/org.dieschnittstelle.jee.esa.ser/api/touchpoints");
 
 			// create an ObjectOutputStream from a ByteArrayOutputStream - the
 			// latter must be accessible via a variable
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ObjectOutputStream oos = new ObjectOutputStream(baos);
 
 			// write the object to the output stream
+			oos.writeObject(tp);
 
 			// create a ByteArrayEntity and pass it the byte array from the
 			// output stream
+			HttpEntity entity = new ByteArrayEntity(baos.toByteArray());
 
 			// set the entity on the request
+			request.setEntity(entity);
 
 			// execute the request, which will return a Future<HttpResponse> object
+			Future<HttpResponse> future = client.execute(request, null);
 
 			// get the response from the Future object
+			HttpResponse response = future.get();
 
 			// log the status line
+			logger.info("Status Line: " + response.getStatusLine());
 
 			// evaluate the result using getStatusLine(), use constants in
 			// HttpStatus
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) { /* if successful: */
 
-			/* if successful: */
+				// create an object input stream using getContent() from the
+				// response entity (accessible via getEntity())
+				ObjectInputStream ois = new ObjectInputStream(response
+						.getEntity().getContent());
 
-			// create an object input stream using getContent() from the
-			// response entity (accessible via getEntity())
+				// read the touchpoint object from the input stream
+				atp = (AbstractTouchpoint) ois.readObject();
 
-			// read the touchpoint object from the input stream
+				// cleanup the request
+				EntityUtils.consume(response.getEntity());
+			}
 
-			// cleanup the request
-			// EntityUtils.consume(response.getEntity());
-
-			// return the object that you have read from the response
-			return null;
 		} catch (Exception e) {
 			logger.error("got exception: " + e, e);
 			throw new RuntimeException(e);
 		}
+		// return the object that you have read from the response
 
+		return atp;
 	}
 
 	/**

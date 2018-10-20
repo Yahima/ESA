@@ -50,9 +50,9 @@ public class TouchpointServiceServletAsync extends HttpServlet {
 		}).start();
 
 	}
-	
+
 	/*
-	@Override	
+	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) {
 
@@ -63,19 +63,19 @@ public class TouchpointServiceServletAsync extends HttpServlet {
 
 		try {
 			// create an ObjectInputStream from the request's input stream
-		
+
 			// read an AbstractTouchpoint object from the stream
-		
+
 			// call the create method on the executor and take its return value
-		
+
 			// set the response status as successful, using the appropriate
 			// constant from HttpServletResponse
-		
+
 			// then write the object to the response's output stream, using a
 			// wrapping ObjectOutputStream
-		
+
 			// ... and write the object to the stream
-		
+
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -83,6 +83,17 @@ public class TouchpointServiceServletAsync extends HttpServlet {
 	}
 	*/
 
+	@Override
+	protected void doDelete(HttpServletRequest request,
+							HttpServletResponse response) {
+		TouchpointCRUDExecutor exec = (TouchpointCRUDExecutor) getServletContext()
+				.getAttribute("touchpointCRUD");
 
-	
+		try {
+			response.setStatus(HttpServletResponse.SC_OK);
+
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

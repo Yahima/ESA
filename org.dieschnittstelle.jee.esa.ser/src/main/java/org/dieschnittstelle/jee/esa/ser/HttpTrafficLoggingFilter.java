@@ -65,7 +65,8 @@ public class HttpTrafficLoggingFilter implements Filter {
 		// continue filtering
 		chain.doFilter(request, response);
 
-		System.out.println("\n\n%%%%%%%%%%%%%%% request processing done %%%%%%%%%%%%%%%\n");
+		// Changes by Johanna
+		//System.out.println("\n\n%%%%%%%%%%%%%%% request processing done %%%%%%%%%%%%%%%\n");
 	}
 
 	@Override
@@ -82,8 +83,9 @@ public class HttpTrafficLoggingFilter implements Filter {
 	 * a request
 	 */
 	public static String logRequest(HttpServletRequest request) {
-		StringBuffer buf = new StringBuffer();
 
+		// Changes by Johanna StringBuffer to StringBuilder (deprecated)
+		StringBuilder buf = new StringBuilder();
 		
 		// access the attributes
 		buf.append("Request Properties:");
