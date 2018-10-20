@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import static org.dieschnittstelle.jee.esa.utils.Utils.*;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.jee.esa.entities.crm.AbstractTouchpoint;
 
@@ -90,17 +91,18 @@ public class TouchpointServiceServlet extends HttpServlet {
 		}
 	}
 
+	// Changes by Johanna SER4
 	@Override
 	protected void doDelete(HttpServletRequest request,
 						  HttpServletResponse response) {
 		TouchpointCRUDExecutor exec = (TouchpointCRUDExecutor) getServletContext()
 				.getAttribute("touchpointCRUD");
 
-		try {
-			response.setStatus(HttpServletResponse.SC_OK);
+		String uri = request.getRequestURI();
+		String strId = uri.substring(uri.lastIndexOf("/") + 1);
+		long id = Long.parseLong(strId);
 
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		if(exec.deleteTouchpoint(id)) response.setStatus(HttpServletResponse.SC_OK);
+		else response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 	}
 }

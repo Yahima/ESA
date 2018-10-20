@@ -179,31 +179,6 @@ public class ShowTouchpointService {
 	/**
 	 * UE SER3
 	 * 
-	 * @param tp
-	 */
-	public void deleteTouchpoint(AbstractTouchpoint tp) {
-		logger.info("deleteTouchpoint(): will delete: " + tp);
-
-		createClient();
-
-		logger.debug("client running: {}",client.isRunning());
-
-		boolean bool = false;
-		try {
-			HttpDelete deleteRequest = new HttpDelete("http://localhost:8888/org.dieschnittstelle.jee.esa.ser/api/async/touchpoints/delete/" + tp.getId());
-			Future<HttpResponse> future = client.execute(deleteRequest, null);
-			HttpResponse response = future.get();
-			logger.info("Status Line: " + response.getStatusLine());
-
-		} catch (Exception e) {
-			logger.error("got exception: " + e, e);
-			throw new RuntimeException(e);
-		}
-	}
-
-	/**
-	 * UE SER4
-	 * 
 	 * fuer das Schreiben des zu erzeugenden Objekts als Request Body siehe die
 	 * Hinweise auf:
 	 * http://stackoverflow.com/questions/10146692/how-do-i-write-to
@@ -216,13 +191,11 @@ public class ShowTouchpointService {
 
 		createClient();
 
-		logger.debug("client running: {}",client.isRunning());
-
-		AbstractTouchpoint atp = null;
+		logger.debug("client running: {}", client.isRunning());
 		try {
 
 			// create post request for the api/touchpoints uri
-			HttpPost request = new HttpPost("http://localhost:8888/org.dieschnittstelle.jee.esa.ser/api/touchpoints");
+			HttpPost request = new HttpPost(getURI());
 
 			// create an ObjectOutputStream from a ByteArrayOutputStream - the
 			// latter must be accessible via a variable
@@ -258,19 +231,48 @@ public class ShowTouchpointService {
 						.getEntity().getContent());
 
 				// read the touchpoint object from the input stream
-				atp = (AbstractTouchpoint) ois.readObject();
+				AbstractTouchpoint atp = (AbstractTouchpoint) ois.readObject();
 
 				// cleanup the request
 				EntityUtils.consume(response.getEntity());
+
+				// return the object that you have read from the response
+				return atp;
 			}
 
 		} catch (Exception e) {
 			logger.error("got exception: " + e, e);
 			throw new RuntimeException(e);
 		}
-		// return the object that you have read from the response
+		return  null;
+	}
 
-		return atp;
+	/**
+	 * UE SER4
+	 *
+	 * @param tp
+	 */
+	public void deleteTouchpoint(AbstractTouchpoint tp) {
+		logger.info("deleteTouchpoint(): will delete: " + tp);
+
+		createClient();
+
+		logger.debug("client running: {}",client.isRunning());
+		try {
+			HttpDelete request = new HttpDelete(getURI() + "/" + tp.getId());
+
+			Future<HttpResponse> future= this.client.execute( request, null );
+			HttpResponse response = future.get();
+
+			logger.info("Status Line: " + response.getStatusLine());
+
+			if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK){ /* if successful: */
+				logger.info("Deleted Touchpoint: " + tp);
+			}
+		} catch (Exception e) {
+			logger.error("got exception: " + e, e);
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
@@ -294,4 +296,9 @@ public class ShowTouchpointService {
 		}
 	}
 
+	// UE SER4 Anforderung 2
+	private String getURI() {
+		boolean async = false;
+		return "http://localhost:8888/org.dieschnittstelle.jee.esa.ser/api/" + (async ? "async/touchpoints" : "touchpoints");
+	}
 }

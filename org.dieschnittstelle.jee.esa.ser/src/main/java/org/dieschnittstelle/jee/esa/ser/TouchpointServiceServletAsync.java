@@ -22,10 +22,10 @@ public class TouchpointServiceServletAsync extends HttpServlet {
 	public TouchpointServiceServletAsync() {
 		show("TouchpointServiceServlet: constructor invoked\n");
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) {
+						 HttpServletResponse response) {
 
 		logger.info("doGet()");
 
@@ -55,12 +55,9 @@ public class TouchpointServiceServletAsync extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) {
-
 		// assume POST will only be used for touchpoint creation, i.e. there is
 		// no need to check the uri that has been used
-
 		// obtain the executor for reading out the touchpoints from the servlet context using the touchpointCRUD attribute
-
 		try {
 			// create an ObjectInputStream from the request's input stream
 
@@ -79,21 +76,9 @@ public class TouchpointServiceServletAsync extends HttpServlet {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-
 	}
 	*/
 
-	@Override
-	protected void doDelete(HttpServletRequest request,
-							HttpServletResponse response) {
-		TouchpointCRUDExecutor exec = (TouchpointCRUDExecutor) getServletContext()
-				.getAttribute("touchpointCRUD");
 
-		try {
-			response.setStatus(HttpServletResponse.SC_OK);
 
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
 }
