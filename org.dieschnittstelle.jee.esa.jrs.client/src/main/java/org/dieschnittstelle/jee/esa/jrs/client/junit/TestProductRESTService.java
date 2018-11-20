@@ -1,17 +1,14 @@
 package org.dieschnittstelle.jee.esa.jrs.client.junit;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
 import org.dieschnittstelle.jee.esa.entities.erp.AbstractProduct;
 import org.dieschnittstelle.jee.esa.entities.erp.IndividualisedProductItem;
 import org.dieschnittstelle.jee.esa.entities.erp.ProductType;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class TestProductRESTService {
 	
@@ -60,5 +57,6 @@ public class TestProductRESTService {
 		assertEquals("product list is reduced on delete",prodlistBefore.size()+1,client.readAllProducts().size());				
 			
 	}
+
 
 }
