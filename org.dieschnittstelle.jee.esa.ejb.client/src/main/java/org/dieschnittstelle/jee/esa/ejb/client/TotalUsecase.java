@@ -48,7 +48,7 @@ public class TotalUsecase {
 
 	// TODO: PAT1: set to true for testing facade
 	// TODO: ADD4: set to true for testing success-case for transactions and ShoppingException
-	private boolean useShoppingSessionFacade = false /*true*/;
+	private boolean useShoppingSessionFacade = true;
 
 	// declare the attributes that will be instantiated with the ejb clients - note that the attributes use the remote interface types
 	private ProductCRUDRemote productCRUD;
@@ -169,6 +169,9 @@ public class TotalUsecase {
 			int shoppingcount = 0;
 			while (true) {
 				try {
+
+					System.out.println("ShoppingCount: " + shoppingcount);
+
 					// create a shopping session and initialise it such that
 					// it can access the required beans
 					ShoppingBusinessDelegate session;
@@ -196,7 +199,12 @@ public class TotalUsecase {
 					if (this.stepping) step();
 
 					// now try to commit the session
+
+					//System.out.println(stockSystem.getAllProductsOnStock());
 					session.purchase();
+					//System.out.println("PURCHASE...");
+					//System.out.println(stockSystem.getAllProductsOnStock());
+
 				} catch (Exception e) {
 					logger.error(e.getMessage(), e);
 					// throwing exceptions out of main is bad style, yet we

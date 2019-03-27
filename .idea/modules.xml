@@ -20,15 +20,18 @@
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.jsf.cdi/jsf-cdi-webapp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.jsf.cdi/jsf-cdi-webapp.iml" group="11_JSF" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.jsf/jsf-webapp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.jsf/jsf-webapp.iml" group="11_JSF" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.jws.client/jws-client.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.jws.client/jws-client.iml" group="5_JWS" />
+      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.jws.client/jws-client.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.jws.client/jws-client.iml" group="5_JWS" />
+      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.jws/jws-webapp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.jws/jws-webapp.iml" group="5_JWS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.jws/jws-webapp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.jws/jws-webapp.iml" group="5_JWS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.lib.entities.crm/lib-entities-crm.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.lib.entities.crm/lib-entities-crm.iml" group="0_SHARED" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.lib.entities.erp/lib-entities-erp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.lib.entities.erp/lib-entities-erp.iml" group="0_SHARED" />
-      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.lib.utils/lib-utils.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.lib.utils/lib-utils.iml" group="0_SHARED"/>
+      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.lib.utils/lib-utils.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.lib.utils/lib-utils.iml" group="0_SHARED" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ser.client/ser-client.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ser.client/ser-client.iml" group="3_SER" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ser/ser-webapp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ser/ser-webapp.iml" group="3_SER" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ue.add2/ue-add2.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ue.add2/ue-add2.iml" group="9_ADD" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ue.add3/ue-add3.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ue.add3/ue-add3.iml" group="9_ADD" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ue.jsf5/ue-jsf5.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ue.jsf5/ue-jsf5.iml" group="11_JSF" />
+      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ue.jws4/ue-jws4.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ue.jws4/ue-jws4.iml" group="5_JWS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ue.jws4/ue-jws4.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ue.jws4/ue-jws4.iml" group="5_JWS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ue.jws5/ue-jws5.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.ue.jws5/ue-jws5.iml" group="5_JWS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.jee.esa.wsv.client/wsv-client.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.jee.esa.wsv.client/wsv-client.iml" group="6_WSV" />

@@ -16,6 +16,7 @@ import org.dieschnittstelle.jee.esa.ejb.client.ejbclients.CustomerTrackingClient
 import org.dieschnittstelle.jee.esa.ejb.client.ejbclients.ShoppingCartClient;
 import org.dieschnittstelle.jee.esa.entities.erp.AbstractProduct;
 import org.dieschnittstelle.jee.esa.entities.erp.Campaign;
+import org.dieschnittstelle.jee.esa.entities.erp.ProductBundle;
 
 public class ShoppingSession implements ShoppingBusinessDelegate {
 
@@ -126,6 +127,7 @@ public class ShoppingSession implements ShoppingBusinessDelegate {
 						item.getUnits());
 				// TODO: wenn Sie eine Kampagne haben, muessen Sie hier
 				// 1) ueber die ProductBundle Objekte auf dem Campaign Objekt iterieren, und
+				//for (ProductBundle productBundle : item.getBundles()) {
 				// 2) fuer jedes ProductBundle das betreffende Produkt in der auf dem Bundle angegebenen Anzahl, multipliziert mit dem Wert von
 				// item.getUnits() aus dem Warenkorb,
 				// - hinsichtlich Verfuegbarkeit ueberpruefen, und

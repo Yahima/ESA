@@ -33,18 +33,23 @@ public class TestStockSystem {
 		stockSystemClient = new StockSystemClient();		
 		touchpointCRUDClient = new TouchpointAccessClient();
 		// we create the touchpoints and products before creating the stock items as the actual subject of testing
+		System.out.println("TP1-ID vor SPeichern: " + PRODUCT_1.getId());
 		productCRUDClient.createProduct(PRODUCT_1);
 		productCRUDClient.createProduct(PRODUCT_2);
-		
+		System.out.println("TP1-ID nach speichern: " + PRODUCT_1.getId());
+
 		touchpointCRUDClient.createTouchpointAndPointOfSale(TOUCHPOINT_1);
 		touchpointCRUDClient.createTouchpointAndPointOfSale(TOUCHPOINT_2);
+
 	}
 	
 	@Test 
 	public void stockSystemWorks() {
 
 		// determine initial number of products on stock from previous run
+		System.out.println("Xlient: " + stockSystemClient);
 		List<IndividualisedProductItem> initialProductsOnStock = stockSystemClient.getAllProductsOnStock();
+		System.out.println(initialProductsOnStock);
 		assertNotNull("all products on stock is not null", initialProductsOnStock);
 
 		// add to stock
@@ -81,6 +86,7 @@ public class TestStockSystem {
 		assertEquals("number of touchpoints correct for p2",1,touchpoints_p2.size());
 		assertTrue("touchpoint correct for p2", touchpoints_p2.contains(new Long(TOUCHPOINT_1.getErpPointOfSaleId())));
 
+		System.out.println(stockSystemClient.getAllProductsOnStock());
 		assertEquals("all products on stock correct", 2, stockSystemClient.getAllProductsOnStock().size() - initialProductsOnStock.size());
 
 	}

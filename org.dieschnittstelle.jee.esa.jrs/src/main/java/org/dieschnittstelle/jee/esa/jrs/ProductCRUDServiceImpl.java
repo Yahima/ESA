@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.jee.esa.entities.GenericCRUDExecutor;
 import org.dieschnittstelle.jee.esa.entities.crm.AbstractTouchpoint;
+import org.dieschnittstelle.jee.esa.entities.erp.AbstractProduct;
 import org.dieschnittstelle.jee.esa.entities.erp.IndividualisedProductItem;
 
 import javax.servlet.ServletContext;
@@ -19,31 +20,31 @@ public class ProductCRUDServiceImpl implements IProductCRUDService {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(ProductCRUDServiceImpl.class);
 
-	private GenericCRUDExecutor<IndividualisedProductItem> productCRUD;
+	private GenericCRUDExecutor<AbstractProduct> productCRUD;
 
 	public ProductCRUDServiceImpl(@Context ServletContext servletContext, @Context HttpServletRequest request) {
 		logger.info("<constructor>: " + servletContext + "/" + request);
 		// read out the dataAccessor
-		this.productCRUD = (GenericCRUDExecutor<IndividualisedProductItem>)servletContext.getAttribute("productCRUD");
+		this.productCRUD = (GenericCRUDExecutor<AbstractProduct>)servletContext.getAttribute("productCRUD");
 
 		logger.debug("read out the productCRUD from the servlet context: " + this.productCRUD);
 	}
 
 	@Override
-	public IndividualisedProductItem createProduct(
-			IndividualisedProductItem prod) {
-		return (IndividualisedProductItem)this.productCRUD.createObject(prod);
+	public AbstractProduct createProduct(
+			AbstractProduct prod) {
+		return (AbstractProduct)this.productCRUD.createObject(prod);
 	}
 
 	@Override
-	public List<IndividualisedProductItem> readAllProducts() {
+	public List<AbstractProduct> readAllProducts() {
 		return (List)this.productCRUD.readAllObjects();
 	}
 
 	@Override
-	public IndividualisedProductItem updateProduct(long id,
-			IndividualisedProductItem update) {
-		return (IndividualisedProductItem)this.productCRUD.updateObject(update);
+	public AbstractProduct updateProduct(long id,
+			AbstractProduct update) {
+		return (AbstractProduct)this.productCRUD.updateObject(update);
 	}
 
 	@Override
@@ -52,8 +53,8 @@ public class ProductCRUDServiceImpl implements IProductCRUDService {
 	}
 
 	@Override
-	public IndividualisedProductItem readProduct(long id) {
-		return (IndividualisedProductItem)this.productCRUD.readObject(id);
+	public AbstractProduct readProduct(long id) {
+		return (AbstractProduct)this.productCRUD.readObject(id);
 	}
 	
 }

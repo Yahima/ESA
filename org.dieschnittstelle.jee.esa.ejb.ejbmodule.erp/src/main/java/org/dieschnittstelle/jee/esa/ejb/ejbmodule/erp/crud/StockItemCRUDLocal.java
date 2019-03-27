@@ -31,6 +31,7 @@ public interface StockItemCRUDLocal {
      * cascading for merge (only for merge!) and call merge() on item, which results
      * in persisting the item if it does not exist in the database yet
      */
+
     public StockItem createStockItem(StockItem item);
 
     /*

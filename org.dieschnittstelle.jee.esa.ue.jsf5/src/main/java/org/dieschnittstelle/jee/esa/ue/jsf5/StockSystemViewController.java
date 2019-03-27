@@ -4,6 +4,8 @@ import java.util.*;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.ejb.EJB;
+import javax.ejb.Local;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -12,6 +14,7 @@ import javax.inject.Named;
 import org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm.TouchpointAccessLocal;
 import org.dieschnittstelle.jee.esa.ejb.ejbmodule.crm.TouchpointAccessStateless;
 import org.dieschnittstelle.jee.esa.ejb.ejbmodule.erp.StockSystemLocal;
+import org.dieschnittstelle.jee.esa.ejb.ejbmodule.erp.StockSystemRemote;
 import org.dieschnittstelle.jee.esa.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.jee.esa.entities.erp.IndividualisedProductItem;
 import org.dieschnittstelle.jee.esa.entities.erp.PointOfSale;
@@ -31,6 +34,9 @@ public class StockSystemViewController {
 	 * using the @Resource annotation and the mappedName:
 	 * java:global/org.dieschnittstelle.jee.esa.ejb/org.dieschnittstelle.jee.esa.ejb.ejbmodule.erp/StockSystemSingleton!org.dieschnittstelle.jee.esa.ejb.ejbmodule.erp.StockSystemLocal
 	 */
+	@Resource(mappedName = "java:global/org.dieschnittstelle.jee.esa.ejb/org.dieschnittstelle.jee.esa.ejb.ejbmodule.erp/" +
+			"StockSystemSingleton!org.dieschnittstelle.jee.esa.ejb.ejbmodule.erp.StockSystemLocal")
+	private StockSystemLocal stockSystem;
 
 	/*
 	 * use the helper bean - this is needed for JSF6
@@ -54,7 +60,9 @@ public class StockSystemViewController {
 	 * TODO: return the values of the stockItemsMap. Note that you might need to create a new ArrayList from the values
 	 */
 	public Collection<StockItem> getStockItems() {
-		return new ArrayList<StockItem>();
+
+		return stockItemsMap.values();
+
 	}
 
 	/*
@@ -109,6 +117,7 @@ public class StockSystemViewController {
 	 *
 	 * TODO: should be called once this bean is created
 	 */
+	@PostConstruct
 	public void loadData() {
 
 		logger.info("@PostConstruct: helper is: " + stockSystemHelper);

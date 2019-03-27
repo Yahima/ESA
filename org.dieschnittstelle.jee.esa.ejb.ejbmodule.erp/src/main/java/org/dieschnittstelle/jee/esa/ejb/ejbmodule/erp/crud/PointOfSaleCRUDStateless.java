@@ -14,14 +14,14 @@ import org.apache.logging.log4j.Logger;
 /**
  * very rudimentary implementation without any logging... 
  */
-@Stateless
+@Stateless(name="PointOfSaleCRUD")
 public class PointOfSaleCRUDStateless implements PointOfSaleCRUDRemote, PointOfSaleCRUDLocal {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(PointOfSaleCRUDStateless.class);
 	
 	@PersistenceContext(unitName = "erp_PU")
 	private EntityManager em;
-	
+
 	/*
 	 * UE ADD1: comment in/out @TransactionAttribute
 	 */
@@ -46,6 +46,8 @@ public class PointOfSaleCRUDStateless implements PointOfSaleCRUDRemote, PointOfS
 
 	@Override
 	public List<PointOfSale> readAllPointsOfSale() {
+		System.out.println("POSCRUD - EM: " + em);
+		System.out.println("Query: " + em.createQuery("SELECT p FROM PointOfSale AS p"));
 		return em.createQuery("SELECT p FROM PointOfSale AS p").getResultList();
 	}
 

@@ -25,6 +25,13 @@
 				<env-entry-value>1000000</env-entry-value>
 			</env-entry>
 		</session>
+		<session>
+			<ejb-name>ShoppingSessionFacadeStateful</ejb-name>
+			<stateful-timeout>
+				<timeout>100</timeout>
+				<unit>Milliseconds</unit>
+			</stateful-timeout>
+		</session>
 	</enterprise-beans>
 	<interceptors>
 		<interceptor>

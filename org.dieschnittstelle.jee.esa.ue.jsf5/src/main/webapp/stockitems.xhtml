@@ -8,7 +8,7 @@
 <!--  display the stock items -->
 <h3>Warenlager</h3>
 <!--  TODO: create a table that reads out all items from the stockSystemVC, iterate on the item variable -->
-<h:dataTable value="" var="" border="1" id="itemsTable">
+<h:dataTable value="#{vc.getStockItems}" var="stockItem" border="1" id="itemsTable">
 	<h:column>
 		<!--  include the name of the pos / touchpoint -->
 		<f:facet name="header">Verkaufsstelle</f:facet>
@@ -18,11 +18,13 @@
 		<!--  include the name of the product -->
 		<f:facet name="header">Produktname</f:facet>
 		<!--  TODO: insert the value reference here -->
+		#{stockItem.product.name}
 	</h:column>
 	<h:column>
 		<!--  include the type of the product -->
 		<f:facet name="header">Produkttyp</f:facet>
 		<!--  TODO: insert the value reference here -->
+		#{stockItem.product.productType}
 	</h:column>
 	<!--  TODO: include the units value and allow to manipulate it -->
 	<h:column>
